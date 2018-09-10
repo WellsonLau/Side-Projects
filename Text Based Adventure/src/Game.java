@@ -7,35 +7,27 @@ public class Game {
 	}
 	
 	public void startGame() {
-		Scanner input = new Scanner(System.in);
+		Map map = new Map(2,2);
+		Scanner input = new Scanner(System.in);	
+		
 		System.out.print("Welcome to my game, enter your name: ");
 		String heroName = input.nextLine();
-		
 		//Character creation for the game - base stats of 100 health and 10 AD
-		Human player = new Human(heroName, 100, 10);	
-		int choice = introDialogue(player, input);
-		options(player, choice);
+		Human player = new Human(heroName, 100, 10);
+		
+		introDialogue(player, input);
+		
+		//performs action based on the player's choice
+		options(player, map);
 		
 	}
 	
-	public void options(Human player, int choice) {
-		if(choice == 1) {
+	public void options(Human player, Map map) {
+		if(player.getChoice() == 1) {
 			System.out.println(stats(player));
 		}
-		if(choice == 2) {
-			displayMap();
-		}
-	}
-	
-	public void displayMap() {
-		String[][] map = new String[2][2];
-		//columns
-		for(int i = 0; i < map[i].length; i++) {
-			System.out.println((char)i + 65);
-			//rows
-			for(int j = 0; j < map[i].length; j++) {
-				System.out.println((i + 1) + " |\t");
-			}
+		if(player.getChoice() == 2) {
+			map.displayMap();
 		}
 	}
 	
@@ -46,14 +38,14 @@ public class Game {
 	}
 	
 	//spawning player and giving them options on what to do
-	public int introDialogue(Human player, Scanner input) {
-		System.out.println("\nGreetings " + player.getName() + "\n");
-		System.out.println("You wake up in a daze with your back lying on a wall.\n");
-		System.out.println("You see a road ahead of you, what would you like to do?\n");
-		System.out.println("1. view status\n2. view map\n3. move");
-		
+	public void introDialogue(Human player, Scanner input) {
+		System.out.println("\nGreetings " + player.getName() + "\n\n" +
+				"You wake up in a daze with your back lying on a wall.\n\n" +
+				"You see a road ahead of you, what would you like to do?\n\n" +
+				"1. view status\n2. view map\n3. move\n");
+
 		int choice = input.nextInt();
-		return choice;
+		player.setChoice(choice);
 	}
 	
 }
