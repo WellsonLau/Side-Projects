@@ -7,7 +7,8 @@ public class Game {
 	}
 	
 	public void startGame() {
-		Map map = new Map(2,2);
+		//parameters - (rows in map, columns in map, starting x coordinate, starting y coordinate) 
+		Map map = new Map(2, 2, 0, 0); 
 		Scanner input = new Scanner(System.in);	
 		
 		System.out.print("Welcome to my game, enter your name: ");
