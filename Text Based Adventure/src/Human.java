@@ -1,6 +1,6 @@
 
 public class Human extends Creature{
-	int choice;
+	String choice;
 	
 	public Human() {
 	
@@ -10,11 +10,13 @@ public class Human extends Creature{
 		super(name, health, attackDamage);
 	}
 	
-	public void setChoice(int choice) {
+	/*
+	public void setChoice(String choice) {
 		this.choice = choice;
 	}
 	
-	public int getChoice() {
+	public String getChoice() {
 		return choice;
 	}
+	*/
 }

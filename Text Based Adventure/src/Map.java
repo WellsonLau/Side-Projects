@@ -1,7 +1,8 @@
 
 public class Map {
-	private int xCoord; //rows
-	private int yCoord; //columns
+	private String location;
+	private int positionX; //x coordinate(rows) of map
+	private int positionY; //y coordinate(columns) of map
 	private int numRows; //number of rows for the rooms
 	private int numCols; //number of columns for the rooms
 	Room[][] grid;
@@ -14,9 +15,43 @@ public class Map {
 		grid = new Room[row][column];
 		numRows = row;
 		numCols = column;
-		//starting coordinates of a map will be placed as (xStart, yStart)
-		xCoord = xStart;
-		yCoord = yStart;
+		this.positionX = xStart;
+		this.positionY = yStart;
+	}
+	
+	public void move(String direction) {
+		if(direction.equals("north")) {
+			if(getPositionX() == 0) {
+				System.out.println("can't move " + direction);
+			}
+			else if(getPositionX() != 0) {
+				setPositionX(getPositionX() - 1);
+			}
+		}
+		if(direction.equals("west")) {
+			if(getPositionY() == 0) {
+				System.out.println("can't move " + direction);
+			}
+			else if(getPositionY() != 0) {
+				setPositionY(getPositionY() - 1);
+			}
+		}
+		if(direction.equals("east")) {
+			if(getPositionY() == grid.length - 1) {
+				System.out.println("can't move " + direction);
+			}
+			else if(getPositionX() != grid.length - 1) {
+				setPositionY(getPositionY() + 1);
+			}
+		}
+		if(direction.equals("south")) {
+			if(getPositionX() == grid.length - 1) {
+				System.out.println("can't move " + direction);
+			}
+			else if(getPositionX() != grid.length - 1) {
+				setPositionX(getPositionX() + 1);
+			}
+		}
 	}
 	
 	public void displayMap() {
@@ -27,28 +62,35 @@ public class Map {
 		}
 		System.out.println("\n");
 		
-		//for printing int values of grid
+		//row formatting
 		for(int i = 0; i < getNumRows(); i++) {
-			System.out.print("      " + (i + 1) + " | ");
+			System.out.print("      " + i + " | ");
 			for(int j = 0; j < getNumCols(); j++) {
-				System.out.print(grid[i][j] + " | ");
+				System.out.print("  | ");
 			}
 			System.out.println();
 		}
-		
-		location();
 	}
 	
-	public void location() {
-		System.out.println("\n" + "You are currently on: " +(char)(yCoord + 65) + (xCoord + 1));
+	public String getLocation() {
+		this.location = "" + (char)(getPositionY() + 65) + (getPositionX());
+		return location;
 	}
 	
-	public int positionX() {
-		return xCoord;
+	public int getPositionX() {
+		return positionX;
 	}
 	
-	public int positionY() {
-		return yCoord;
+	public void setPositionX(int Xcoord) {
+		this.positionX = Xcoord;
+	}
+	
+	public int getPositionY() {
+		return positionY;
+	}
+	
+	public void setPositionY(int Ycoord) {
+		this.positionY = Ycoord;
 	}
 	
 	public int getNumRows() {
