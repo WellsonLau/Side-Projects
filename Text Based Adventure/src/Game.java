@@ -1,38 +1,20 @@
 import java.util.*;
 
 public class Game {
+	private boolean gameEnd;
 
 	public Game(){
 
 	}
 
-	public void startGame() {
-		Map map = new Map(2, 2, 0, 0); //parameters - (rows in map, columns in map, starting x coordinate, starting y coordinate) 
-		Scanner input = new Scanner(System.in);	
-
-		System.out.print("Welcome to my game, enter your name: ");
-		String heroName = input.nextLine();
-		Human player = new Human(heroName, 100, 10); //Character creation for the game - base stats of 100 health and 10 AD
-
-		introDialogue(player, input);
-		System.out.println(); //line skip for formatting
-		
-		boolean quitEntered = false;
-		while(!quitEntered) {
-		options(player, map, input); //performs action based on the player's choice
-		}
-	}
-
 	public void options(Human player, Map map, Scanner input) {
-		optionsDialogue(); //asks for user choice
-		String userChoice = input.nextLine(); //retrieve choice input from user
-		switch(userChoice) {
-		case "1":
-			System.out.println("which direction?\n" + "1. North\t 2. West\n3. South\t 4. East\n");
+		String choice = input.next();
+		if(choice.equals("1") || choice.equalsIgnoreCase("move")) {
+			map.displayMap();
+			
+			System.out.print("which direction?\n" + "1. North\t 2. West\n3. South\t 4. East\n");
 			String direction = input.next();
-			System.out.println();
-
-			if(direction.equals("1")) {
+			if(direction.equals("1") || direction.equalsIgnoreCase("north")) {
 				map.move("north");
 			}
 			else if(direction.equals("2")) {
@@ -44,26 +26,29 @@ public class Game {
 			else if(direction.equals("4")) {
 				map.move("east");
 			}
-			System.out.println();
-			System.out.println("You are currently on: " + map.getLocation());
-			break;
-		case "2":
+			else {
+				System.out.println("invalid response");
+			}
+			System.out.println("You are currently on: " + map.getLocation() + "\n");
+		}
+		else if(choice.equals("2")) {
 			map.displayMap();
-			System.out.println("\n" + "You are currently on " + map.getLocation() + "\n");
-			break;
-		case "3":
+		}
+		else if(choice.equals("3")) {
 			System.out.println(stats(player));
-			break;
-		case "quit":
-			quitEntered = true;
-		default:
+		}
+		else if(choice.equals("quit")) {
+			gameEnd = true;
+		}
+		else {
 			System.out.println("invalid response");
 		}
+		//input.nextLine(); //clear the buffer so the program doesn't ignore next user input
 	}
 
 	//returns player name and hp
 	public String stats(Human player) {
-		String stats = "/// " + player.getName() + ", HP: " + player.getHealth() + " ///\n";
+		String stats = "\n/// " + player.getName() + ", HP: " + player.getHealth() + " ///\n";
 		return stats;
 	}
 
@@ -75,11 +60,13 @@ public class Game {
 	}
 
 	public void optionsDialogue() {
-		System.out.println("Enter a number input, or type 'quit'\n"
-				+ "1. move " + "   "
-				+ "2. view map " + "   "
-				+ "3. view status ");
-		
+		System.out.print("1. move " + "\n"
+				+ "2. view map " + "\n"
+				+ "3. view status " + "\n\n" 
+				+ "Enter a number input, or type 'quit': ");
 	}
-
+	
+	public boolean gameEnd() {
+		return gameEnd;
+	}
 }

@@ -55,6 +55,7 @@ public class Map {
 	}
 	
 	public void displayMap() {
+		System.out.println("\nYou are currently on: " + getLocation() + "\n");
 		//print out column letters
 		System.out.print("\t| ");
 		for(int i = 0; i < getNumCols(); i++) {
@@ -70,6 +71,7 @@ public class Map {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 	
 	public String getLocation() {
