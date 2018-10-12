@@ -28,7 +28,7 @@ public class Map {
 				setPositionX(getPositionX() - 1);
 			}
 		}
-		if(direction.equals("west")) {
+		else if(direction.equals("west")) {
 			if(getPositionY() == 0) {
 				System.out.println("can't move " + direction);
 			}
@@ -36,7 +36,7 @@ public class Map {
 				setPositionY(getPositionY() - 1);
 			}
 		}
-		if(direction.equals("east")) {
+		else if(direction.equals("east")) {
 			if(getPositionY() == grid.length - 1) {
 				System.out.println("can't move " + direction);
 			}
@@ -44,7 +44,7 @@ public class Map {
 				setPositionY(getPositionY() + 1);
 			}
 		}
-		if(direction.equals("south")) {
+		else if(direction.equals("south")) {
 			if(getPositionX() == grid.length - 1) {
 				System.out.println("can't move " + direction);
 			}
