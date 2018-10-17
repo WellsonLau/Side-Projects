@@ -6,8 +6,8 @@ public class Room {
 		
 	}
 	
-	public boolean roomExplored() {
-		return this.explored;
+	public void roomExplored(boolean explored) {
+		this.explored = explored;
 	}
 	
 }

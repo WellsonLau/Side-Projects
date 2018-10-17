@@ -4,7 +4,7 @@ public class World {
 
 	public static void main(String args[]) {
 		Game adventure = new Game();
-		Map map = new Map(2, 2, 0, 0); //parameters - (rows in map, columns in map, starting x coordinate, starting y coordinate) 
+		Map map = new Map(3, 3, 0, 0); //parameters - (rows in map, columns in map, starting x coordinate, starting y coordinate) 
 		Scanner input = new Scanner(System.in);	
 
 		System.out.print("Welcome to my game, enter your name: ");

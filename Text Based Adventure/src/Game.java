@@ -10,29 +10,43 @@ public class Game {
 	public void options(Human player, Map map, Scanner input) {
 		String choice = input.next();
 		if(choice.equals("1") || choice.equalsIgnoreCase("move")) {
+			System.out.println();
 			map.displayMap();
-			
-			System.out.print("which direction?\n" + "1. North\t 2. West\n3. South\t 4. East\n");
-			String direction = input.next();
-			if(direction.equals("1") || direction.equalsIgnoreCase("north")) {
-				map.move("north");
+			System.out.print("\n" + "1. North\t 2. West\n3. South\t 4. East\n\nwhich direction? ");
+			String choiceDirection = input.next();
+			String direction = directionConvert(choice);
+			System.out.println();
+			if(choiceDirection.equals("1") || direction.equalsIgnoreCase("north")) {
+				if(map.getPositionX() != 0) {
+					map.moveNorth();
+				}
+				else {
+					System.out.println("Can't move " + direction + " from " + map.getLocation());
+					System.out.println();
+				}
+
 			}
-			else if(direction.equals("2")) {
-				map.move("west");
+			else if(choiceDirection.equals("2")) {
+				map.moveWest();
 			}
-			else if(direction.equals("3")) {
-				map.move("south");
+			else if(choiceDirection.equals("3")) {
+				map.moveSouth();
 			}
-			else if(direction.equals("4")) {
-				map.move("east");
+			else if(choiceDirection.equals("4")) {
+				map.moveEast();
 			}
 			else {
 				System.out.println("invalid response");
+				System.out.println();
 			}
-			System.out.println("You are currently on: " + map.getLocation() + "\n");
+			map.displayMap();
+			System.out.println();
 		}
 		else if(choice.equals("2")) {
+			System.out.println();
+			System.out.println("You are currently on: " + map.getLocation() + "\n");
 			map.displayMap();
+			System.out.println();
 		}
 		else if(choice.equals("3")) {
 			System.out.println(stats(player));
@@ -42,6 +56,7 @@ public class Game {
 		}
 		else {
 			System.out.println("invalid response");
+			System.out.println();
 		}
 		//input.nextLine(); //clear the buffer so the program doesn't ignore next user input
 	}
@@ -68,5 +83,22 @@ public class Game {
 	
 	public boolean gameEnd() {
 		return gameEnd;
+	}
+	
+	public String directionConvert(String input) {
+		String direction = "";
+		if(input.equals("1")) {
+			direction = "north";
+		}
+		else if(input.equals("2")) {
+			direction = "west";
+		}
+		else if(input.equals("3")) {
+			direction = "south";
+		}
+		else if(input.equals("4")) {
+			direction = "east";
+		}
+		return direction;
 	}
 }
