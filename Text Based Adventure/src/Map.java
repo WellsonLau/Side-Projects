@@ -34,28 +34,6 @@ public class Map {
 	public void moveSouth() {
 		setPositionX(getPositionX() + 1);
 	}
-		/*
-		else if(direction.equals("west")) {
-			if(getPositionY() == 0) {
-				System.out.println("can't move " + direction);
-			}
-		else if(direction.equals("east")) {
-			if(getPositionY() == grid.length - 1) {
-				System.out.println("can't move " + direction);
-			}
-			else if(getPositionX() != grid.length - 1) {
-				setPositionY(getPositionY() + 1);
-			}
-		}
-		else if(direction.equals("south")) {
-			if(getPositionX() == grid.length - 1) {
-				System.out.println("can't move " + direction);
-			}
-			else if(getPositionX() != grid.length - 1) {
-				setPositionX(getPositionX() + 1);
-			}
-		}
-		*/
 	
 	public void displayLocation() {
 		System.out.println("\nYou are currently on: " + getLocation() + "\n");
@@ -120,5 +98,15 @@ public class Map {
 	
 	public int getNumCols() {
 		return numCols;
+	}
+	
+	public int getRowLength() {
+		int size = grid.length;
+		return size;
+	}
+	
+	public int getColLength() {
+		int size = grid[0].length;
+		return size;
 	}
 }

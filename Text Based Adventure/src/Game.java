@@ -14,9 +14,9 @@ public class Game {
 			map.displayMap();
 			System.out.print("\n" + "1. North\t 2. West\n3. South\t 4. East\n\nwhich direction? ");
 			String choiceDirection = input.next();
-			String direction = directionConvert(choice);
+			String direction = directionConvert(choiceDirection);
 			System.out.println();
-			if(choiceDirection.equals("1") || direction.equalsIgnoreCase("north")) {
+			if(choiceDirection.equals("1") || direction.equalsIgnoreCase("north")) { //North
 				if(map.getPositionX() != 0) {
 					map.moveNorth();
 				}
@@ -24,16 +24,33 @@ public class Game {
 					System.out.println("Can't move " + direction + " from " + map.getLocation());
 					System.out.println();
 				}
-
 			}
-			else if(choiceDirection.equals("2")) {
-				map.moveWest();
+			else if(choiceDirection.equals("2")) { //West
+				if(map.getPositionY() != 0) {
+					map.moveWest();
+				}
+				else {
+					System.out.println("Can't move " + direction + " from " + map.getLocation());
+					System.out.println();
+				}
 			}
-			else if(choiceDirection.equals("3")) {
-				map.moveSouth();
+			else if(choiceDirection.equals("3")) { //South
+				if(map.getPositionX() != map.getColLength()) {
+					map.moveSouth();
+				}
+				else {
+					System.out.println("Can't move " + direction + " from " + map.getLocation());
+					System.out.println();
+				}
 			}
-			else if(choiceDirection.equals("4")) {
-				map.moveEast();
+			else if(choiceDirection.equals("4")) { //East
+				if(map.getPositionY() != map.getRowLength() - 1) {
+					map.moveEast();
+				}			
+				else {
+					System.out.println("Can't move " + direction + " from " + map.getLocation());
+					System.out.println();
+				}
 			}
 			else {
 				System.out.println("invalid response");
