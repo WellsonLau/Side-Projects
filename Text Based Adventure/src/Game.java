@@ -7,62 +7,24 @@ public class Game {
 
 	}
 
-	public void options(Human player, Map map, Scanner input) {
+	public void options(Player player, Map map, Scanner input) {
+		int numRows = map.getNumRows();
+		int numCols = map.getNumCols();
 		String choice = input.next();
 		if(choice.equals("1") || choice.equalsIgnoreCase("move")) {
 			System.out.println();
-			map.displayMap();
+			player.displayMap(numRows, numCols);
 			System.out.print("\n" + "1. North\t 2. West\n3. South\t 4. East\n\nwhich direction? ");
-			String choiceDirection = input.next();
-			String direction = directionConvert(choiceDirection);
+			String numDirection = input.next();
 			System.out.println();
-			if(choiceDirection.equals("1") || direction.equalsIgnoreCase("north")) { //North
-				if(map.getPositionX() != 0) {
-					map.moveNorth();
-				}
-				else {
-					System.out.println("Can't move " + direction + " from " + map.getLocation());
-					System.out.println();
-				}
-			}
-			else if(choiceDirection.equals("2")) { //West
-				if(map.getPositionY() != 0) {
-					map.moveWest();
-				}
-				else {
-					System.out.println("Can't move " + direction + " from " + map.getLocation());
-					System.out.println();
-				}
-			}
-			else if(choiceDirection.equals("3")) { //South
-				if(map.getPositionX() != map.getColLength()) {
-					map.moveSouth();
-				}
-				else {
-					System.out.println("Can't move " + direction + " from " + map.getLocation());
-					System.out.println();
-				}
-			}
-			else if(choiceDirection.equals("4")) { //East
-				if(map.getPositionY() != map.getRowLength() - 1) {
-					map.moveEast();
-				}			
-				else {
-					System.out.println("Can't move " + direction + " from " + map.getLocation());
-					System.out.println();
-				}
-			}
-			else {
-				System.out.println("invalid response");
-				System.out.println();
-			}
-			map.displayMap();
+			move(player, numDirection, map);
+			player.displayMap(numRows, numCols);
 			System.out.println();
 		}
 		else if(choice.equals("2")) {
 			System.out.println();
-			System.out.println("You are currently on: " + map.getLocation() + "\n");
-			map.displayMap();
+			System.out.println("You are currently on: " + player.getLocation() + "\n");
+			player.displayMap(numRows, numCols);
 			System.out.println();
 		}
 		else if(choice.equals("3")) {
@@ -78,14 +40,61 @@ public class Game {
 		//input.nextLine(); //clear the buffer so the program doesn't ignore next user input
 	}
 
+	public void move(Player player, String numDirection, Map map) {
+		int numRows = map.getNumRows();
+		int numCols = map.getNumCols();
+		String direction = directionConvert(numDirection);
+		
+		if(numDirection.equals("1") || numDirection.equalsIgnoreCase("north")) { //North
+			if(player.getPositionX() != 0) {
+				player.moveNorth();
+			}
+			else {
+				System.out.println("Can't move " + direction + " from " + player.getLocation());
+				System.out.println();
+			}
+		}
+		else if(numDirection.equals("2")) { //West
+			if(player.getPositionY() != 0) {
+				player.moveWest();
+			}
+			else {
+				System.out.println("Can't move " + direction + " from " + player.getLocation());
+				System.out.println();
+			}
+		}
+		else if(numDirection.equals("3")) { //South
+			if(player.getPositionX() != numRows - 1) {
+				player.moveSouth();
+			}
+			else {
+				System.out.println("Can't move " + direction + " from " + player.getLocation());
+				System.out.println();
+			}
+		}
+		else if(numDirection.equals("4")) { //East
+			if(player.getPositionY() != numCols - 1) {
+				player.moveEast();
+			}			
+			else {
+				System.out.println("Can't move " + direction + " from " + player.getLocation());
+				System.out.println();
+			}
+		}
+		else {
+			System.out.println("invalid response");
+			System.out.println();
+		}
+	}
+	
 	//returns player name and hp
-	public String stats(Human player) {
+	public String stats(Player player) {
 		String stats = "\n/// " + player.getName() + ", HP: " + player.getHealth() + " ///\n";
 		return stats;
 	}
 
 	//spawning player and giving them options on what to do
-	public void introDialogue(Human player, Scanner input) {
+	public void introDialogue(Player player, Scanner input) {
 		System.out.println("\nGreetings " + player.getName() + "\n\n" +
 				"You wake up in a daze with your back lying on a wall.\n" +
 				"You see a road ahead of you, what would you like to do?\n");
@@ -118,4 +127,6 @@ public class Game {
 		}
 		return direction;
 	}
+	
+	
 }

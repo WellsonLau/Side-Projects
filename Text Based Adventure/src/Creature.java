@@ -1,6 +1,5 @@
 
 public class Creature {
-
 	private String name;
 	private int health;
 	private int attackDamage;
