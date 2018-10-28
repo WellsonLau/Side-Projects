@@ -1,16 +1,20 @@
 public class Test{
 
 	public static void main(String args[]) {
-		//accessing an object within an object
-		Tool knife = new Tool("knife");
-		Person testPerson = new Person(knife);
-		System.out.println(testPerson.getTool().getWeapon());
-		
-		//adding variables to a constructor that wasn't existent upon initialization
-		testPerson.setLevel(100);
-		System.out.println(testPerson.getLevel());
+
 	}
 
+	/*accessing an object within an object
+	Tool knife = new Tool("knife");
+	Person testPerson = new Person(knife);
+	System.out.println(testPerson.getTool().getWeapon());
+	*/
+	
+	/*adding variables to a constructor that wasn't existent upon initialization
+	testPerson.setLevel(100);
+	System.out.println(testPerson.getLevel());
+	*/
+	
 	/*
 	public static void displayMap() {
 		int x = 2;

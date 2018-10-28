@@ -1,8 +1,7 @@
 
 public class Player extends Creature{
-	private String location;
-	private int positionX; //x coordinate(rows) on map
-	private int positionY; //y coordinate(columns) on map
+	private String choice;
+	private String action;
 	
 	public Player() {
 	
@@ -16,18 +15,19 @@ public class Player extends Creature{
 		System.out.println("\nYou are currently on: " + getLocation() + "\n");
 	}
 	
-	public void displayMap(int numRows, int numCols) {
+	public void displayMap(Map currMap) {
 		//print out column letters
+		System.out.println("Forest - " + "You are currently on: " + getLocation() + "\n");
 		System.out.print("\t" + "|  ");
-		for(int i = 0; i < numCols; i++) {
+		for(int i = 0; i < currMap.getNumCols(); i++) {
 			System.out.print((char)(i + 65) + "  |  ");
 		}
 		System.out.println();
 		
 		//row formatting
-		for(int i = 0; i < numRows; i++) {
+		for(int i = 0; i < currMap.getNumRows(); i++) {
 			System.out.print("      " + i + " " + "|");
-			for(int j = 0; j < numCols; j++) {
+			for(int j = 0; j < currMap.getNumCols(); j++) {
 				//implementing x to mark current position
 				if(i == getPositionX() && j == getPositionY()) {
 					System.out.print("  x");
@@ -37,7 +37,7 @@ public class Player extends Creature{
 				}
 				System.out.print("  |");
 			}
-			if(i == numRows/2) { //directional guide printed in middle to the right of the map
+			if(i == currMap.getNumRows()/2) { //directional guide printed in middle to the right of the map
 				System.out.print("\t");
 				//printMapKey();
 			}
@@ -45,43 +45,13 @@ public class Player extends Creature{
 		}
 	}
 	
-	public void moveNorth() {
-		setPositionX(getPositionX() - 1);
+	public void consumeHealthPotion(Consumable potion) {
+		setHealth(getCurrHealth() + potion.getHp()); //adds the potion's hp amount to player's current health
+		if(getCurrHealth() > getMaxHealth()) {
+			setHealth(getMaxHealth());
+		}
 	}
 	
-	public void moveWest() {
-		setPositionY(getPositionY() - 1);
-	}
-	
-	public void moveEast() {
-		setPositionY(getPositionY() + 1);
-	}
-	
-	public void moveSouth() {
-		setPositionX(getPositionX() + 1);
-	}
-	public int getPositionX() {
-		return positionX;
-	}
-	
-	public void setPositionX(int Xcoord) {
-		this.positionX = Xcoord;
-	}
-	
-	public int getPositionY() {
-		return positionY;
-	}
-	
-	public void setPositionY(int Ycoord) {
-		this.positionY = Ycoord;
-	}
-	
-	public String getLocation() {
-		this.location = "" + (char)(getPositionY() + 65) + (getPositionX());
-		return location;
-	}
-	
-	/*
 	public void setChoice(String choice) {
 		this.choice = choice;
 	}
@@ -89,5 +59,34 @@ public class Player extends Creature{
 	public String getChoice() {
 		return choice;
 	}
-	*/
+	
+	public String getAction() {
+		return action;
+	}
+	
+	public void setAction(String choice) {
+		if(getChoice().equals("1a") || getChoice().equals("1b") || getChoice().equals("1c") || getChoice().equals("1d")) {//player chooses to move
+			this.action = "move";
+		}
+		else if(getChoice().equals("quit")) {
+			this.action = "quit";
+		}
+		else if(getChoice().equals("2")) {
+			this.action = "view map";
+		}
+		else if(getChoice().equals("3")) {
+			this.action = "view status";
+		}
+		else {
+			this.action = "invalid";
+		}
+	}
 }
+
+
+
+
+/*public String testCode() {
+	return "testing";
+}
+*/
