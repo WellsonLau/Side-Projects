@@ -89,25 +89,34 @@ public class Creature {
 		case "north": //
 			if(getPositionX() != 0) { //Move north if possible
 				setPositionX(getPositionX() - 1);
-				break;
 			}
+			else {
+				System.out.println("Can't move " + direction + " from " + getLocation() + "\n");
+			}
+			break;
 		case "west": //
-			if(getPositionY() != 0) { //Move north if possible
+			if(getPositionY() != 0) { //Move west if possible
 				setPositionY(getPositionY() - 1);
-				break;
 			}
+			else {
+				System.out.println("Can't move " + direction + " from " + getLocation() + "\n");
+			}
+			break;
 		case "south": 
 			if(getPositionX() != numRows - 1) { //Move south if possible
 				setPositionX(getPositionX() + 1);
 			}
+			else {
+				System.out.println("Can't move " + direction + " from " + getLocation() + "\n");
+			}
 			break;
 		case "east": //
-			if(getPositionY() != numCols - 1) { //Move north if possible
+			if(getPositionY() != numCols - 1) { //Move east if possible
 				setPositionY(getPositionY() + 1);
-				break;
 			}
-		default:
-			System.out.println("Can't move " + direction);
+			else {
+				System.out.println("Can't move " + direction + " from " + getLocation() + "\n");
+			}
 			break;
 		}
 

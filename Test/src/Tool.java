@@ -1,5 +1,5 @@
 
-public class Tool {
+public class Tool implements Workshop{
 	private String weapon;
 	
 	public Tool() {
@@ -12,5 +12,10 @@ public class Tool {
 
 	public String getWeapon() {
 		return weapon;
+	}
+
+	@Override
+	public void setUpStation() {
+		System.out.println("workbench is set up!");
 	}
 }
