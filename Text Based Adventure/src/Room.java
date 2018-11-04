@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Room extends Map{
 	private int roomNumber;
 	private boolean explored;
-	private ArrayList<Creature> monsters;
-	private ArrayList<Creature> NPCs;
+	private ArrayList<Creature> monsters = new ArrayList<Creature>();
+	private ArrayList<Creature> NPCs = new ArrayList<Creature>();
 	
 	public Room() {
 		

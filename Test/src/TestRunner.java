@@ -1,20 +1,20 @@
-public class Test{
+public class TestRunner{
 
 	public static void main(String args[]) {
-		//CLASSES
-		//classes can use overloaded methods, own methods, or parent methods
-		//can be tedious to code same methods over & over again if subclasses are expressing similar methods not contained in parent
-		//how to fix? use Interface, located down below.
+		/*-------CLASSES-------
+		 * classes can use overloaded methods, own methods, or parent methods
+		 * can be tedious to code same methods over & over again if subclasses are expressing similar methods not contained in parent
+		 * how to fix? use Interface, located down below.
+		*/
 		Tool test1 = new Tool();
 		test1.setUpStation();
 		test1.getWeapon();
 
-		//INTERFACE
-		/*interface can only use its own methods
+		/*-------INTERFACES-------
+		 *interface can only use its own methods
 		 *is a contract - methods must be defined in the classes that implement the interface later on
 		 *express common functionalities btw classes that implement it
 		 */
-
 		Workshop test2 = new Tool();
 		test2.setUpStation();
 	}
@@ -51,5 +51,4 @@ public class Test{
 		}
 	}
 	 */
-	//-------------------NOTES-------------------//
 }

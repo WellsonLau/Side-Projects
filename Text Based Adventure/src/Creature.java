@@ -5,12 +5,11 @@ public class Creature {
 	private int maxHealth;
 	private int currHealth;
 	private int attackDamage;
-	private String location;
 	private int positionX; //x coordinate(rows) on map
 	private int positionY; //y coordinate(columns) on map
-
-	public Creature() {
-
+	private String location;
+	
+	public Creature(){
 	}
 
 	public Creature(String name, int health, int attackDamage) {
@@ -23,9 +22,17 @@ public class Creature {
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int value) {
+		gold = value;
 	}
 
 	public int getMaxHealth() {
@@ -39,17 +46,17 @@ public class Creature {
 	public int getCurrHealth() {
 		return currHealth;
 	}
-
-	public void setHealth(int health) {
+	
+	public void setCurrHealth(int health) {
 		this.currHealth = health;
 	}
 
-	public int getGold() {
-		return gold;
+	public int getAttackDamage() {
+		return attackDamage;
 	}
-
-	public void setGold(int value) {
-		gold = value;
+	
+	public void setAttackDamage(int damage) {
+		this.attackDamage = damage;
 	}
 
 	public int getPositionX() {
@@ -119,6 +126,8 @@ public class Creature {
 			}
 			break;
 		}
+		//in the case that the new spot has an enemy, option to battle it
+	}
 
 		/*
 		if(numDirection.equals("1") || numDirection.equalsIgnoreCase("north")) { //North
@@ -162,5 +171,4 @@ public class Creature {
 			System.out.println();
 		}
 		*/
-	}
 }

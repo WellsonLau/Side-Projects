@@ -12,7 +12,7 @@ public class GameFunctions {
 		player.setAction(player.getChoice()); //determining what the game will do based on user's input
 		
 		switch(player.getAction()) {
-		case "move": //player chooses to move
+		case "move": //player chooses option 1 to move
 			System.out.println();
 			player.displayMap(map);
 			System.out.println();
@@ -20,19 +20,19 @@ public class GameFunctions {
 			player.displayMap(map);
 			System.out.println();
 			break;
+		case "view map": //player chooses option 2 to view map
+			System.out.println();
+			player.displayMap(map);
+			System.out.println();
+			break;
+		case "view status": //player chooses option 3 to view status
+			System.out.println(player.getStats());
+			break;
 		case "quit": //player types in quit, so game ends
 			gameEnd = true;
 			break;
 		case "invalid": //player types an invalid response
 			System.out.println("\n" + "invalid response" + "\n");
-			break;
-		case "view map":
-			System.out.println();
-			player.displayMap(map);
-			System.out.println();
-			break;
-		case "view status": //player types 3 to view status
-			System.out.println(player.getStats());
 			break;
 		}
 	}

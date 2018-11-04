@@ -1,5 +1,5 @@
 
-public class Player extends Creature{
+public class Player extends Creature implements Battle{
 	private String choice;
 	private String action;
 	
@@ -7,10 +7,38 @@ public class Player extends Creature{
 	
 	}
 	
-	public Player(String name, int health, int attackDamage) {
+	public Player(String name, int health, int attackDamage, int startX, int startY) {
 		super(name, health, attackDamage);
 	}
+	public String getChoice() {
+		return choice;
+	}
 	
+	public void setChoice(String choice) {
+		this.choice = choice;
+	}
+	
+	public String getAction() {
+		return action;
+	}
+	
+	public void setAction(String choice) {
+		if(getChoice().equals("1a") || getChoice().equals("1b") || getChoice().equals("1c") || getChoice().equals("1d")) {//player chooses to move
+			this.action = "move";
+		}
+		else if(getChoice().equals("quit")) {
+			this.action = "quit";
+		}
+		else if(getChoice().equals("2")) {
+			this.action = "view map";
+		}
+		else if(getChoice().equals("3")) {
+			this.action = "view status";
+		}
+		else {
+			this.action = "invalid";
+		}
+	}
 	public void displayLocation() {
 		System.out.println("\nYou are currently on: " + getLocation() + "\n");
 	}
@@ -46,47 +74,15 @@ public class Player extends Creature{
 	}
 	
 	public void consumeHealthPotion(Consumable potion) {
-		setHealth(getCurrHealth() + potion.getHp()); //adds the potion's hp amount to player's current health
+		setCurrHealth(getCurrHealth() + potion.getHp()); //adds the potion's hp amount to player's current health
 		if(getCurrHealth() > getMaxHealth()) {
-			setHealth(getMaxHealth());
+			setCurrHealth(getMaxHealth());
 		}
+	}
+
+	@Override
+	public void attack(Creature enemy) {
+		enemy.setCurrHealth(enemy.getCurrHealth() - super.getAttackDamage());
 	}
 	
-	public void setChoice(String choice) {
-		this.choice = choice;
-	}
-	
-	public String getChoice() {
-		return choice;
-	}
-	
-	public String getAction() {
-		return action;
-	}
-	
-	public void setAction(String choice) {
-		if(getChoice().equals("1a") || getChoice().equals("1b") || getChoice().equals("1c") || getChoice().equals("1d")) {//player chooses to move
-			this.action = "move";
-		}
-		else if(getChoice().equals("quit")) {
-			this.action = "quit";
-		}
-		else if(getChoice().equals("2")) {
-			this.action = "view map";
-		}
-		else if(getChoice().equals("3")) {
-			this.action = "view status";
-		}
-		else {
-			this.action = "invalid";
-		}
-	}
 }
-
-
-
-
-/*public String testCode() {
-	return "testing";
-}
-*/
