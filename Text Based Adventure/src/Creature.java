@@ -8,6 +8,7 @@ public class Creature {
 	private int positionX; //x coordinate(rows) on map
 	private int positionY; //y coordinate(columns) on map
 	private String location;
+	private boolean alive;
 	
 	public Creature(){
 	}
@@ -129,6 +130,12 @@ public class Creature {
 		//in the case that the new spot has an enemy, option to battle it
 	}
 
+	boolean alive() {
+		if(getCurrHealth() > 0) {
+			return true;
+		}
+		return false;
+	}
 		/*
 		if(numDirection.equals("1") || numDirection.equalsIgnoreCase("north")) { //North
 			if(player.getPositionX() != 0) {

@@ -20,7 +20,7 @@ public class World {
 		}
 		
 		testBench(grid);
-		
+		/*
 		//--------------------------Game Start--------------------------
 		System.out.print("Welcome to my game, enter your name: ");
 		String heroName = input.nextLine();
@@ -32,16 +32,25 @@ public class World {
 			adventure.optionsDialogue(); //asks for user choice
 			adventure.options(player, map, input); //functions for the choice
 		}
+		*/
 	}
 	
 	public static void testBench(Room[][] map) {
-		Creature goblin = new Creature("goblin", 15, 5);
-		Player bob = new Player("bob", 100, 10, 0, 0);
+		Monster goblin = new Monster("Billy", 15, 5);
+		Player bob = new Player();
+		bob.setName("bob");
+		bob.setMaxHealth(100);
+		bob.setCurrHealth(100);
+		bob.setAttackDamage(10);
+		
+		bob.battle(goblin);
+		/*System.out.println("goblin's health: " + goblin.getCurrHealth() + "\n" + "bob's health: " + bob.getCurrHealth());
+		bob.attack(goblin);
+		System.out.println("You attacked goblin's health for " + bob.getAttackDamage() + " damage");
+		System.out.println("goblin's health: " + goblin.getCurrHealth());
+		*/
 		//System.out.println(bob.getGold()); //objects' int variables initialized to 0 
 		//map[0][0].test();
 		//map[0][0].addMonster(goblin);
-		System.out.println("Goblin's heallthg: " + goblin.getCurrHealth());
-		bob.attack(goblin);
-		System.out.println("Goblin's heallthg: " + goblin.getCurrHealth());
 	}
 }

@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Player extends Creature implements Battle{
 	private String choice;
@@ -6,7 +7,7 @@ public class Player extends Creature implements Battle{
 	public Player() {
 	
 	}
-	
+
 	public Player(String name, int health, int attackDamage, int startX, int startY) {
 		super(name, health, attackDamage);
 	}
@@ -26,14 +27,14 @@ public class Player extends Creature implements Battle{
 		if(getChoice().equals("1a") || getChoice().equals("1b") || getChoice().equals("1c") || getChoice().equals("1d")) {//player chooses to move
 			this.action = "move";
 		}
-		else if(getChoice().equals("quit")) {
-			this.action = "quit";
-		}
 		else if(getChoice().equals("2")) {
 			this.action = "view map";
 		}
 		else if(getChoice().equals("3")) {
 			this.action = "view status";
+		}
+		else if(getChoice().equals("quit")) {
+			this.action = "quit";
 		}
 		else {
 			this.action = "invalid";
@@ -45,7 +46,7 @@ public class Player extends Creature implements Battle{
 	
 	public void displayMap(Map currMap) {
 		//print out column letters
-		System.out.println("Forest - " + "You are currently on: " + getLocation() + "\n");
+		System.out.println("Area: " + currMap.getMapName() + "\n" + "Position: " + getLocation() + "\n");
 		System.out.print("\t" + "|  ");
 		for(int i = 0; i < currMap.getNumCols(); i++) {
 			System.out.print((char)(i + 65) + "  |  ");
@@ -87,15 +88,44 @@ public class Player extends Creature implements Battle{
 
 	@Override
 	public void battle(Creature enemy) {
-	int turn = 0;
-	
-	while(getCurrHealth() != 0 || enemy.getCurrHealth() != 0) { //Eventually change this to check for battle situation
-		//Battle menu - attack/items/flee
-		enemy.setCurrHealth(enemy.getCurrHealth() - getAttackDamage());
-		System.out.println("You dealt " + getAttackDamage());
-		System.out.println(enemy.getName() + "'s health: " + enemy.getCurrHealth());
+		while(alive() || enemy.alive()) { //check for battle situation
+			System.out.println("Your health: " + super.getCurrHealth() + "\n" + enemy.getName() + "'s health: " + enemy.getCurrHealth());
+			//Battle menu - attack/items/flee
+			String choice = optionsInterface();
+			switch(choice) {
+			case "1":
+				//eventually need an attack menu for skills/spells
+				System.out.println("You dealt " + super.getAttackDamage() + " damage to " + enemy.getName());
+				enemy.setCurrHealth(enemy.getCurrHealth() - super.getAttackDamage());
+				System.out.println(enemy.getName() + "'s health: " + enemy.getCurrHealth());
+			default:
+				System.out.println("Invalid response");
+				choice = optionsInterface();
+			}	
+		}
 	}
+
+	@Override
+	public String optionsInterface() {
+		Scanner input = new Scanner(System.in);
+		String choice = "";
 		
+		System.out.println("1. Attack");
+		System.out.println("2. Items");
+		System.out.println("3. Flee" + "\n");
+		System.out.print("What would you like to do: ");
+		
+		if(input.hasNext()) {
+		choice = input.next();
+		}
+		
+		switch(choice) {
+		case "1":
+			//attack interface
+			choice = "1";
+		}
+		input.close();
+		return choice;
 	}
 	
-}
+	}
