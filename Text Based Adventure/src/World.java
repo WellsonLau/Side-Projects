@@ -18,21 +18,13 @@ public class World {
 				grid[i][j] = new Room();
 			}
 		}
-		//--------------------------TEST BENCH--------------------------
-		///*
-		Creature goblin = new Creature();
-		Player bob = new Player();
-		System.out.println(bob.getGold()); //variables of type int for objects initialized to 0 
-		grid[0][0].test();
-		grid[0][0].addMonster(goblin);
-		//*/
+		
+		testBench(grid);
 		
 		//--------------------------Game Start--------------------------
 		System.out.print("Welcome to my game, enter your name: ");
 		String heroName = input.nextLine();
 		Player player = new Player(heroName, 100, 10, 0, 0); //Character creation for the game - base stats of 100 health and 10 AD
-		player.setPositionX(0); //starting x coordinate for player
-		player.setPositionY(0); //starting y coord
 
 		adventure.introDialogue(player, input);
 
@@ -40,5 +32,16 @@ public class World {
 			adventure.optionsDialogue(); //asks for user choice
 			adventure.options(player, map, input); //functions for the choice
 		}
+	}
+	
+	public static void testBench(Room[][] map) {
+		Creature goblin = new Creature("goblin", 15, 5);
+		Player bob = new Player("bob", 100, 10, 0, 0);
+		//System.out.println(bob.getGold()); //objects' int variables initialized to 0 
+		//map[0][0].test();
+		//map[0][0].addMonster(goblin);
+		System.out.println("Goblin's heallthg: " + goblin.getCurrHealth());
+		bob.attack(goblin);
+		System.out.println("Goblin's heallthg: " + goblin.getCurrHealth());
 	}
 }

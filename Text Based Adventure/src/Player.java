@@ -84,5 +84,18 @@ public class Player extends Creature implements Battle{
 	public void attack(Creature enemy) {
 		enemy.setCurrHealth(enemy.getCurrHealth() - super.getAttackDamage());
 	}
+
+	@Override
+	public void battle(Creature enemy) {
+	int turn = 0;
+	
+	while(getCurrHealth() != 0 || enemy.getCurrHealth() != 0) { //Eventually change this to check for battle situation
+		//Battle menu - attack/items/flee
+		enemy.setCurrHealth(enemy.getCurrHealth() - getAttackDamage());
+		System.out.println("You dealt " + getAttackDamage());
+		System.out.println(enemy.getName() + "'s health: " + enemy.getCurrHealth());
+	}
+		
+	}
 	
 }
