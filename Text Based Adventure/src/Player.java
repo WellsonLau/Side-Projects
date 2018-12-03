@@ -1,8 +1,10 @@
+import java.util.Random;
 import java.util.Scanner;
 
-public class Player extends Creature implements Battle{
+public class Player extends Creature{
 	private String choice;
 	private String action;
+	private int randomDamage;
 	
 	public Player() {
 	
@@ -81,51 +83,18 @@ public class Player extends Creature implements Battle{
 		}
 	}
 
-	@Override
 	public void attack(Creature enemy) {
-		enemy.setCurrHealth(enemy.getCurrHealth() - super.getAttackDamage());
+		Random rand = new Random();
+		setRandomDamage(rand.nextInt(super.getAttackDamage()/2));
+		
+		enemy.setCurrHealth(enemy.getCurrHealth() - randomDamage);
 	}
 
-	@Override
-	public void battle(Creature enemy) {
-		while(alive() || enemy.alive()) { //check for battle situation
-			System.out.println("Your health: " + super.getCurrHealth() + "\n" + enemy.getName() + "'s health: " + enemy.getCurrHealth());
-			//Battle menu - attack/items/flee
-			String choice = optionsInterface();
-			switch(choice) {
-			case "1":
-				//eventually need an attack menu for skills/spells
-				System.out.println("You dealt " + super.getAttackDamage() + " damage to " + enemy.getName());
-				enemy.setCurrHealth(enemy.getCurrHealth() - super.getAttackDamage());
-				System.out.println(enemy.getName() + "'s health: " + enemy.getCurrHealth());
-			default:
-				System.out.println("Invalid response");
-				choice = optionsInterface();
-			}	
-		}
-	}
-
-	@Override
-	public String optionsInterface() {
-		Scanner input = new Scanner(System.in);
-		String choice = "";
-		
-		System.out.println("1. Attack");
-		System.out.println("2. Items");
-		System.out.println("3. Flee" + "\n");
-		System.out.print("What would you like to do: ");
-		
-		if(input.hasNext()) {
-		choice = input.next();
-		}
-		
-		switch(choice) {
-		case "1":
-			//attack interface
-			choice = "1";
-		}
-		input.close();
-		return choice;
+	public int getRandomDamage() {
+		return randomDamage;
 	}
 	
+	public void setRandomDamage(int damage) {
+		this.randomDamage = damage;
 	}
+}

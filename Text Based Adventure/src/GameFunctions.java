@@ -3,10 +3,6 @@ import java.util.*;
 public class GameFunctions {
 	private boolean gameEnd;
 
-	public GameFunctions(){
-
-	}
-
 	public void options(Player player, Map map, Scanner input) {
 		player.setChoice(input.next()); //grabbing user's input
 		player.setAction(player.getChoice()); //determining what the game will do based on user's input
@@ -35,27 +31,38 @@ public class GameFunctions {
 			System.out.println("\n" + "invalid response" + "\n");
 			break;
 		}
-	}
-		/* OLD CODE 
-		 * using if else for options
-		}
-		else if(choice.equals("2")) {
-			System.out.println();
-			player.displayMap(map);
-			System.out.println();
-		}
-		else if(choice.equals("3")) {
-			System.out.println(stats(player));
-		}
-		else if(choice.equals("quit")) {
-			gameEnd = true;
-		}
-		else {
-			System.out.println("invalid response");
-			System.out.println();
-		}
-		*/
 		//input.nextLine(); //clear the buffer so the program doesn't ignore next user input
+	}
+
+	public void battle(Player player, Monster enemy, Scanner input) {
+		while(player.alive() || enemy.alive()) { //check for battle situation
+			System.out.println("Your health: " + player.getCurrHealth() + "\n" 
+					+ enemy.getName() + "'s health: " + enemy.getCurrHealth() + "\n");
+			//Battle menu - attack/items/flee
+			optionsInterface(player, enemy, input);
+		}
+	}
+	
+	public void optionsInterface(Player player, Monster enemy, Scanner input) {
+		String choice = "";
+		
+		System.out.println("1. Attack");
+		System.out.println("2. Items");
+		System.out.println("3. Flee" + "\n");
+		System.out.print("What would you like to do: ");
+
+		if(input.hasNext()) {
+			choice = input.next();
+		}
+
+		switch(choice) {
+		case "1":
+			System.out.println();
+			player.attack(enemy);
+			System.out.println("You dealt " + player.getRandomDamage() + " damage to " + enemy.getName() + "\n");
+			break;
+		}
+	}
 	
 	//spawning player and giving them options on what to do
 	public void introDialogue(Player player, Scanner input) {

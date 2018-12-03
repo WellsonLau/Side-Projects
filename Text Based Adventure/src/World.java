@@ -5,6 +5,20 @@ import java.util.ArrayList;
 public class World {
 
 	public static void main(String args[]) {
+		GameFunctions adventure = new GameFunctions();
+		Scanner input = new Scanner(System.in);	
+		
+		Monster goblin = new Monster("Billy", 20, 5);
+		Player bob = new Player();
+		bob.setName("bob");
+		bob.setMaxHealth(100);
+		bob.setCurrHealth(100);
+		bob.setAttackDamage(10);
+		
+		adventure.battle(bob, goblin, input);
+	}
+
+		/*
 		int numMapRows = 3;
 		int numMapCols = 3;
 		GameFunctions adventure = new GameFunctions();
@@ -19,8 +33,8 @@ public class World {
 			}
 		}
 		
-		testBench(grid);
 		/*
+		 
 		//--------------------------Game Start--------------------------
 		System.out.print("Welcome to my game, enter your name: ");
 		String heroName = input.nextLine();
@@ -33,24 +47,9 @@ public class World {
 			adventure.options(player, map, input); //functions for the choice
 		}
 		*/
-	}
 	
-	public static void testBench(Room[][] map) {
-		Monster goblin = new Monster("Billy", 15, 5);
-		Player bob = new Player();
-		bob.setName("bob");
-		bob.setMaxHealth(100);
-		bob.setCurrHealth(100);
-		bob.setAttackDamage(10);
-		
-		bob.battle(goblin);
-		/*System.out.println("goblin's health: " + goblin.getCurrHealth() + "\n" + "bob's health: " + bob.getCurrHealth());
-		bob.attack(goblin);
-		System.out.println("You attacked goblin's health for " + bob.getAttackDamage() + " damage");
-		System.out.println("goblin's health: " + goblin.getCurrHealth());
-		*/
 		//System.out.println(bob.getGold()); //objects' int variables initialized to 0 
 		//map[0][0].test();
 		//map[0][0].addMonster(goblin);
-	}
+	
 }
