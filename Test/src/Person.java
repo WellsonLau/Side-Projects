@@ -1,5 +1,5 @@
 
-public class Person {
+public class Person implements Workshop{
 	private Tool tool;
 	private String name;
 	private int level;
@@ -27,6 +27,12 @@ public class Person {
 	
 	public int getLevel() {
 		return level;
+	}
+
+	@Override
+	public void setUpStation() {
+		System.out.println("workshop setup by player");
+		
 	}
 
 }

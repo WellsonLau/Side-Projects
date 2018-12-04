@@ -17,6 +17,9 @@ public class TestRunner{
 		 */
 		Workshop test2 = new Tool();
 		test2.setUpStation();
+		
+		Workshop test3 = new Person();
+		test3.setUpStation();
 	}
 	
 	//-------------------NOTES-------------------//

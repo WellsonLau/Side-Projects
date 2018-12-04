@@ -16,6 +16,6 @@ public class Tool implements Workshop{
 
 	@Override
 	public void setUpStation() {
-		System.out.println("workbench is set up!");
+		System.out.println("workbench is not set up!");
 	}
 }

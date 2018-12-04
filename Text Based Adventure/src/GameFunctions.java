@@ -36,10 +36,19 @@ public class GameFunctions {
 
 	public void battle(Player player, Monster enemy, Scanner input) {
 		while(player.alive() || enemy.alive()) { //check for battle situation
-			System.out.println("Your health: " + player.getCurrHealth() + "\n" 
-					+ enemy.getName() + "'s health: " + enemy.getCurrHealth() + "\n");
-			//Battle menu - attack/items/flee
-			optionsInterface(player, enemy, input);
+			int turn = 0;
+			if(turn % 2 == 0) { //Player's turn
+				System.out.println("Your health: " + player.getCurrHealth() + "\n" 
+						+ enemy.getName() + "'s health: " + enemy.getCurrHealth() + "\n");
+				//Battle menu - attack/items/flee
+				optionsInterface(player, enemy, input);
+				turn++;
+			}
+			if(turn % 2 != 0) { //Enemy's turn
+				enemy.attack(player);
+				System.out.println(enemy.getName() + " dealt " + enemy.getTurnDamage()
+				+ " damage to you." + "\n");
+			}
 		}
 	}
 	

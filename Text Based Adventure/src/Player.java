@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Player extends Creature{
 	private String choice;
 	private String action;
-	private int randomDamage;
+	private int turnDamage;
 	
 	public Player() {
 	
@@ -87,14 +87,14 @@ public class Player extends Creature{
 		Random rand = new Random();
 		setRandomDamage(rand.nextInt(super.getAttackDamage()/2));
 		
-		enemy.setCurrHealth(enemy.getCurrHealth() - randomDamage);
+		enemy.setCurrHealth(enemy.getCurrHealth() - turnDamage);
 	}
 
 	public int getRandomDamage() {
-		return randomDamage;
+		return turnDamage;
 	}
 	
 	public void setRandomDamage(int damage) {
-		this.randomDamage = damage;
+		this.turnDamage = damage;
 	}
 }
